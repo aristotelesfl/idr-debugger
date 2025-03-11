@@ -203,11 +203,11 @@ const TreeNodeComponent = ({
   }, [expandAll, node.item.open])
 
   // Auto-expand only if this node is a direct parent in the debug path or is the current step
-  // useEffect(() => {
-  //   if (isCurrentDebugStep || isChildCurrentDebugStep || isDirectParentInDebugPath) {
-  //     setIsOpen(true)
-  //   }
-  // }, [isCurrentDebugStep, isChildCurrentDebugStep, isDirectParentInDebugPath])
+  useEffect(() => {
+    if (isChildCurrentDebugStep || isDirectParentInDebugPath) {
+      setIsOpen(true)
+    }
+  }, [isChildCurrentDebugStep, isDirectParentInDebugPath])
 
   // Get node description based on action_id or condition_id
   const getNodeDescription = () => {
